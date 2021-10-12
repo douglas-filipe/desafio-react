@@ -12,6 +12,7 @@ export const MusicProvider = ({ children }) => {
     const [musicTemp, setMusicTemp] = useState('')
     const [musicCity, setMusicCity] = useState('')
     const [musicStyle, setMusicStyle] = useState('')
+    const [number, setNumber] = useState(0)
 
     const playListSave = JSON.parse(localStorage.getItem("@music")) || []
 
@@ -64,12 +65,12 @@ export const MusicProvider = ({ children }) => {
                 setListMusics(response.data)
             })
             .catch(function (error) {
-                console.error(error);
+                
             });
     };
 
     return (
-        <MusicContext.Provider value={{searchCity, setListMusics, listMusics, musicDate, playListSave, musicTemp, musicCity, musicStyle }}>
+        <MusicContext.Provider value={{searchCity, setListMusics, listMusics, musicDate, playListSave, musicTemp, musicCity, musicStyle, setNumber, number }}>
             {children}
         </MusicContext.Provider>
     )
