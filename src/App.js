@@ -1,9 +1,13 @@
 import { Routes } from "./routes";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <Routes/>
+    <>
+      <Toaster position="top-right" reverseOrder={false} />
+      <Routes />
+    </>
   );
-}
+};
 
 export default App;

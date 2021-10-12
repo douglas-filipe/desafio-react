@@ -1,23 +1,40 @@
+import toast from "react-hot-toast";
 import { useMusic } from "../../contexts/music";
 
 export const SearchResults = () => {
-  
-  const { listMusics, musicDate } = useMusic();
-  
+  const {
+    listMusics,
+    musicDate,
+    musicTemp,
+    musicCity,
+    musicStyle,
+  } = useMusic();
+
   const addToLocalStorage = () => {
-
     const playlist = listMusics.map((m) => {
-        return m.title
-    })
+      return m.title;
+    });
 
-    const listAfter = [musicDate, playlist]
+    const listAfter = { 
+      date: musicDate, 
+      playlist: playlist,
+      temp: musicTemp,
+      city: musicCity,
+      style: musicStyle
+    };
 
-    const listBefore = JSON.parse(localStorage.getItem("@music")) || []
+    const listBefore = JSON.parse(localStorage.getItem("@music")) || [];
+    
+    if(!listBefore.map(e=>e.style).includes(listAfter.style)){
+      const newList = [...listBefore, listAfter];
+      localStorage.setItem("@music", JSON.stringify(newList));
+      toast.success("Playlist salva")
+    }else{
+      toast.error("Playlist já foi salva")
+    }
 
-    const newList = [...listBefore, listAfter]
 
-    localStorage.setItem("@music", JSON.stringify(newList))
-  }
+  };
 
   return (
     <div>
@@ -29,11 +46,11 @@ export const SearchResults = () => {
             </>
           );
         })}
-        {listMusics.length === 0 ?
+      {listMusics.length === 0 ? (
         <p>Pesquise sua cidade acima</p>
-        :
+      ) : (
         <button onClick={addToLocalStorage}>Salvar playlist</button>
-        }
+      )}
     </div>
   );
 };

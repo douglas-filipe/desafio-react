@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { useMusic } from "../../contexts/music";
 import { Container } from "./styles";
 import { SearchResults } from "../../components/searchResults";
+import { Link } from "react-router-dom";
+
 
 export const Home = () => {
 
@@ -18,6 +20,7 @@ export const Home = () => {
 
   return (
     <Container>
+      <Link to="/playlist">Ver playlist</Link>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
@@ -26,7 +29,6 @@ export const Home = () => {
         />
         <button type="submit">Enviar</button>
       </form>
-
       <SearchResults/>
     </Container>
   );

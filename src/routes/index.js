@@ -1,5 +1,6 @@
 import { Switch, Route} from 'react-router-dom'
 import { Home } from '../pages/home'
+import { PlayList } from '../pages/playlist'
 
 export const Routes = () => {
     return(
@@ -9,7 +10,7 @@ export const Routes = () => {
             </Route>
 
             <Route exact path="/playlist">
-                <p>Sua playlist</p>
+                <PlayList/>
             </Route>
         </Switch>
     )
